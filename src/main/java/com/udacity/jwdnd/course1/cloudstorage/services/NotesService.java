@@ -42,8 +42,8 @@ public class NotesService {
         return "";
     }
 
-    public void deleteNote(int noteId) {
-        noteMapper.deleteNoteByNoteId(noteId);
+    public void deleteNote(int noteId, int userid) {
+        noteMapper.deleteNoteByNoteId(noteId, userid);
     }
 
     private String validateNoteTitle(String noteTitle) {

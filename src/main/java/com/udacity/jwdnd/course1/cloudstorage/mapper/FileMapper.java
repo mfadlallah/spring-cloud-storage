@@ -7,8 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface FileMapper {
-    @Delete("DELETE FROM FILES WHERE fileId = #{fileId}")
-    void deleteFileByFileId(int fileId);
+    @Delete("DELETE FROM FILES WHERE fileId = #{fileId} AND userid = #{userId}")
+    void deleteFileByFileId(int fileId, int userId);
 
     @Select("SELECT * FROM FILES WHERE userid = #{userid}")
     List<File> getFilesByUserId(int userid);

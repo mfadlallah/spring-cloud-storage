@@ -8,17 +8,11 @@ import java.util.List;
 @Mapper
 public interface CredentialMapper {
 
-    @Delete("DELETE FROM CREDENTIALS WHERE credentialid = #{credentialid}")
-    void deleteCredentialByCredentialId(int credentialid);
+    @Delete("DELETE FROM CREDENTIALS WHERE credentialid = #{credentialid} AND userid = #{userid}")
+    void deleteCredentialByCredentialId(int credentialid, int userid);
 
     @Select("SELECT * FROM CREDENTIALS WHERE userid = #{userid}")
     List<Credential> getCredentialsByUserId(int userid);
-
-    @Select("SELECT * FROM CREDENTIALS WHERE credentialid = #{credentialid}")
-    Credential getCredentialsById(int credentialid);
-
-    @Select("SELECT credentialid FROM CREDENTIALS WHERE username = #{username}")
-    Integer getCredentialsByUsername(String username);
 
     @Insert("INSERT INTO CREDENTIALS (username, url, key, userid, password) " +
             "VALUES(#{username}, #{url}, #{key}, #{userid}, #{password})")

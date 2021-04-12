@@ -13,6 +13,6 @@ public interface StorageService {
 
 	File loadFile(int fileId);
 
-	void deleteFile(int filId);
+	void deleteFile(int filId, int userId);
 
 }

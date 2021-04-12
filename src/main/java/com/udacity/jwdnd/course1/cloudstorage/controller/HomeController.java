@@ -98,15 +98,25 @@ public class HomeController {
     }
 
     @GetMapping("/deletefile/{fileid}")
-    public String deleteFile(@PathVariable int fileid) {
-        filesService.deleteFile(fileid);
+    public String deleteFile(@PathVariable int fileid,
+                             Principal principal) {
+        User user = userService.getUser(principal.getName());
+
+        if (user != null) {
+            filesService.deleteFile(fileid, user.getUserId());
+        }
         toggleNavTabs(true, false, false);
         return "redirect:/home";
     }
 
     @GetMapping("/deletenote/{noteid}")
-    public String deleteNote(@PathVariable int noteid) {
-        notesService.deleteNote(noteid);
+    public String deleteNote(@PathVariable int noteid,
+                             Principal principal) {
+        User user = userService.getUser(principal.getName());
+
+        if (user != null) {
+            notesService.deleteNote(noteid, user.getUserId());
+        }
         toggleNavTabs(false, true, false);
         return "redirect:/home";
     }
@@ -129,8 +139,13 @@ public class HomeController {
     }
 
     @GetMapping("/deletecredential/{credentialid}")
-    public String deleteCredential(@PathVariable int credentialid) {
-        credentialsService.deleteCredential(credentialid);
+    public String deleteCredential(@PathVariable int credentialid,
+                                   Principal principal) {
+        User user = userService.getUser(principal.getName());
+
+        if (user != null) {
+            credentialsService.deleteCredential(credentialid, user.getUserId());
+        }
         toggleNavTabs(false, false, true);
         return "redirect:/home";
     }

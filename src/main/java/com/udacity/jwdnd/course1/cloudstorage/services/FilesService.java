@@ -52,8 +52,8 @@ public class FilesService implements StorageService {
     }
 
     @Override
-    public void deleteFile(int fileId) {
-        fileMapper.deleteFileByFileId(fileId);
+    public void deleteFile(int fileId, int userId) {
+        fileMapper.deleteFileByFileId(fileId, userId);
     }
 
     public List<File> getFilesByUserId(int userId) {

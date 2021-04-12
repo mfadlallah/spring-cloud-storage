@@ -68,17 +68,7 @@ public class CredentialsService {
         return encryptionService.decryptValue(encryptedPassword, key);
     }
 
-    public void deleteCredential(int credentialId) {
-        credentialMapper.deleteCredentialByCredentialId(credentialId);
-    }
-
-    private String validateUserName(String userName) {
-        if (userName.trim().isEmpty()) {
-            return "Note title is required";
-        }
-        if (this.credentialMapper.getCredentialsByUsername(userName) != null) {
-            return "This note added before";
-        }
-        return "";
+    public void deleteCredential(int credentialId, int userId) {
+        credentialMapper.deleteCredentialByCredentialId(credentialId, userId);
     }
 }

@@ -18,9 +18,6 @@ public class NotesService {
     }
 
     public String store(String noteTitle, String noteDescription, int userid) {
-        String validationMsg = validateNoteTitle(noteTitle);
-        if (!validationMsg.isEmpty()) return validationMsg;
-
         Note note = new Note(
                 noteTitle,
                 noteDescription,
@@ -31,9 +28,6 @@ public class NotesService {
     }
 
     public String editNote(int noteId, String noteTitle, String noteDescription) {
-        String validationMsg = validateNoteTitle(noteTitle);
-        if (!validationMsg.isEmpty()) return validationMsg;
-
         Note note = new Note(noteId,
                 noteTitle,
                 noteDescription);
@@ -44,16 +38,6 @@ public class NotesService {
 
     public void deleteNote(int noteId, int userid) {
         noteMapper.deleteNoteByNoteId(noteId, userid);
-    }
-
-    private String validateNoteTitle(String noteTitle) {
-        if (noteTitle.trim().isEmpty()) {
-            return "Note title is required";
-        }
-        if (this.noteMapper.getNoteIdByTitle(noteTitle) != null) {
-            return "This note added before";
-        }
-        return "";
     }
 
 }

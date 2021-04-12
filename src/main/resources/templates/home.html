@@ -39,8 +39,11 @@
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div th:if="${message}">
+                    <div class="alert alert-success fill-parent" th:if="${message}">
                         <h2 th:text="${message}"/>
+                    </div>
+                    <div class="alert alert-danger fill-parent" th:if="${errorMessage}">
+                        <h2 th:text="${errorMessage}"/>
                     </div>
                     <div class="tab-pane fade" th:classappend="${showFiles} ?  'show active' : ''" id="nav-files" role="tabpanel" aria-labelledby="nav-files-tab">
                         <form method="POST" enctype="multipart/form-data" th:action="@{/upload}">

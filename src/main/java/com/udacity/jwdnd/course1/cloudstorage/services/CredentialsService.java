@@ -23,7 +23,6 @@ public class CredentialsService {
     }
 
     public String store(String url, String userName, String password, int userId) {
-
         String encodedSalt = getSalt();
         String hashedPassword = encryptionService.encryptValue(password, encodedSalt);
 
